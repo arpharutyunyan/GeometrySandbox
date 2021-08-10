@@ -97,7 +97,7 @@ void AGeometryHubActor::OnTimerFinished(AActor* Actor)
 
 	if (!Geometry) return;
 
-	UE_LOG(LogGeometryHub, Display, TEXT("Cast is succes. Amplitude: %s"), Geometry->GetGeometryData().Amplitude);
+	UE_LOG(LogGeometryHub, Display, TEXT("Cast is succes. Amplitude: %i"), Geometry->GetGeometryData().Amplitude);
 	Geometry->Destroy();
 	// Geometry->SetLifeSpan(2.0f);
 }
