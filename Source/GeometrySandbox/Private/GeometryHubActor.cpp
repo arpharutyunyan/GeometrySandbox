@@ -95,10 +95,10 @@ void AGeometryHubActor::OnTimerFinished(AActor* Actor)
 
 	ABaseGeometryActor* Geometry = Cast<ABaseGeometryActor>(Actor);
 
-	//if (!Geometry) return;
+	if (!Geometry) return;
 
-	//UE_LOG(LogGeometryHub, Display, TEXT("Cast is succes. Amplitude: %s"), Geometry->GetGeometryData().Amplitude);
-	//Geometry->Destroy();
+	UE_LOG(LogGeometryHub, Display, TEXT("Cast is succes. Amplitude: %s"), Geometry->GetGeometryData().Amplitude);
+	Geometry->Destroy();
 	// Geometry->SetLifeSpan(2.0f);
 }
 
