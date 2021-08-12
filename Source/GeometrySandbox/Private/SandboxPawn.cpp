@@ -21,7 +21,7 @@ ASandboxPawn::ASandboxPawn()
 	StaticMeshComponent->SetupAttachment(GetRootComponent());
 
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
-	CameraComponent->SetupAttachment(SceneComponent);
+	CameraComponent->SetupAttachment(GetRootComponent());
 
 }
 
