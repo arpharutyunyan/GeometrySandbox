@@ -12,8 +12,11 @@ void ASandboxPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
-	InputComponent->BindAction("ChangePawn", IE_Pressed, this, ASandboxPlayerController::ChangePawn);
-
+	if (InputComponent)
+	{
+		InputComponent->BindAction("ChangePawn", IE_Pressed, this, &ASandboxPlayerController::ChangePawn);
+	}
+	
 }
 
 void ASandboxPlayerController::BeginPlay()

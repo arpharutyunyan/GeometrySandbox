@@ -41,6 +41,7 @@ void ASandboxPawn::Tick(float DeltaTime)
 	{
 		const FVector NewLocation = GetActorLocation() + Velocity * DeltaTime * VelocityVector;
 		SetActorLocation(NewLocation);
+		VelocityVector = FVector::ZeroVector;
 	}
 
 }
@@ -50,9 +51,12 @@ void ASandboxPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis("MoveForward", this, &ASandboxPawn::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &ASandboxPawn::MoveRight);
-
+	if (PlayerInputComponent)
+	{
+		PlayerInputComponent->BindAxis("MoveForward", this, &ASandboxPawn::MoveForward);
+		PlayerInputComponent->BindAxis("MoveRight", this, &ASandboxPawn::MoveRight);
+	}
+	
 }
 
 void ASandboxPawn::MoveForward(float Amount)
@@ -67,3 +71,18 @@ void ASandboxPawn::MoveRight(float Amount)
 	VelocityVector.Y = Amount;
 }
 
+void ASandboxPawn::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	if (!NewController) return;
+	UE_LOG(LogSandboxPawn, Error, TEXT("%s possessed %s"), *GetName(), *NewController->GetName());
+}
+
+void ASandboxPawn::UnPossessed()
+{
+	Super::UnPossessed();
+
+	UE_LOG(LogSandboxPawn, Warning, TEXT("%s possessed"), *GetName());
+
+}
